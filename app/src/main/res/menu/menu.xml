@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigationView">
+    <item android:title="@string/favorite"
+        android:id="@+id/id_favorite"/>
+    <item android:title="@string/cosmos">
+        <menu>
+            <item android:title="@string/planets"
+                android:id="@+id/planets"/>
+            <item android:title="@string/stars"
+                android:id="@+id/stars"/>
+            <item android:title="@string/travel"
+                android:id="@+id/travel"/>
+            <item android:title="@string/universe"
+                android:id="@+id/universe"/>
+        </menu>
+
+    </item>
+    <item android:title="@string/words">
+        <menu>
+            <item android:title="@string/filosof"
+                android:id="@+id/filosof"/>
+            <item android:title="@string/smart"
+                android:id="@+id/smart"/>
+        </menu>
+
+    </item>
+
+
+
+</menu>

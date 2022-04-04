@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">DrawerMenu4</string>
+    <string name="favorite">Избранное</string>
+    <string name="cosmos">Космос</string>
+    <string name="planets">Планеты</string>
+    <string name="stars">Звёзды</string>
+    <string name="travel">Путешествия</string>
+    <string name="universe">Вселенная</string>
+    <string name="words">Цитаты</string>
+    <string name="smart">Смешные фразы</string>
+    <string name="filosof">Фразы философов</string>
+    <string name="cure">Лечебные</string>
+    <string name="awesome">Удивительные</string>
+    <string name="danger">Опасные</string>
+    <string name="unusual">Необычное</string>
+    <string name="ufo">НЛО</string>
+    <string name="spirits">Привидения</string>
+    <string name="plants">Растения</string>
+    <string name="font1">fjallaoner.ttf</string>
+    <string name="font2">SendFlowers-Regular.ttf</string>
+    <string name="font3">RubikWetPaint-Regular.ttf</string>
+
+
+</resources>
