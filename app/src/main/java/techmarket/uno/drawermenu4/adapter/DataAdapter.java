@@ -34,12 +34,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataHolder> {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.textItemTitle);
             textViewItem = itemView.findViewById(R.id.textItemText);
-            imageButtonFavorite = itemView.findViewById(R.id.imageButtonFavorite);
+            imageButtonFavorite = itemView.findViewById(
+                    R.id.imageButtonFavorite);
             itemView.setOnClickListener(this);
         }
 
         void setData(ListItem listItem){
-            textViewTitle.setText(listItem.getText());
+            textViewTitle.setText(listItem.getText_title());
             textViewItem.setText(listItem.getText());
         }
 
@@ -65,5 +66,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataHolder> {
     @Override
     public int getItemCount() {
         return listItemArray.size();
+    }
+    void updateList(List<ListItem> listArray){
+        listItemArray.clear();
+        listArray.addAll(listArray);
+        notifyDataSetChanged();
     }
 }

@@ -32,22 +32,19 @@ public class MainActivity extends AppCompatActivity{
     private ImageView imageMenu;
     private DrawerLayout drawerLayout;
     private TextView textTitle;
+    private TextView textItemText;
     private NavigationView navigationView;
     private NavItemSelectedListener onNavItemSelectedListener;
     private RecOnClickListenerInterface recOnClickListenerInterface;
     private DataAdapter dataAdapter;
     private List<ListItem> listData;
+    private List<ListItem> listKeywords;
     private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        drawerLayout = findViewById(R.id.drawerLayout);
-        imageMenu = findViewById(R.id.imageMenu);
-        textTitle = findViewById(R.id.textTitle);
-        navigationView = findViewById(R.id.navigationView);
 
         setRecOnClickListener();
         init();
@@ -82,21 +79,33 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void init(){
+        drawerLayout = findViewById(R.id.drawerLayout);
+        imageMenu = findViewById(R.id.imageMenu);
+        textTitle = findViewById(R.id.textTitle);
+        textItemText = findViewById(R.id.textItemText);
+        navigationView = findViewById(R.id.navigationView);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
+
         listData = new ArrayList<>();
-        ListItem item = new ListItem();
-        item.setText_title("Hello1");
-        item.setText("Text1");
-        listData.add(item);
-        listData.add(item);
-        listData.add(item);
-        listData.add(item);
-        listData.add(item);
-        listData.add(item);
-        listData.add(item);
-        listData.add(item);
-        listData.add(item);
+        listKeywords = new ArrayList<>();
+
+        String[] mainArray = getResources().getStringArray(R.array.planets);
+        String[] titleArray = getResources().getStringArray(R.array.keywords);
+
+        for(int i = 0; i < mainArray.length; i++){
+            ListItem item = new ListItem();
+            item.setText(mainArray[i]);
+            item.setText_title(titleArray[i]);
+            item.setFavorite(false);
+            listData.add(item);
+        }
+
+//        for(int i = 0; i < titleArray.length; i++){
+//            ListItem title = new ListItem();
+//            title.setText_title(titleArray[i]);
+//            listKeywords.add(title);
+//        }
 
         dataAdapter = new DataAdapter(this,
                 recOnClickListenerInterface,
@@ -137,3 +146,15 @@ public class MainActivity extends AppCompatActivity{
 //        drawerLayout.openDrawer(GravityCompat.START);
 //        }
 //        });
+        //ListItem item = new ListItem();
+//        item.setText_title("Hello1");
+//                item.setText("Text1");
+//                listData.add(item);
+//                listData.add(item);
+//                listData.add(item);
+//                listData.add(item);
+//                listData.add(item);
+//                listData.add(item);
+//                listData.add(item);
+//                listData.add(item);
+//                listData.add(item);
