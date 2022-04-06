@@ -19,44 +19,47 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataHolder> {
     private RecOnClickListenerInterface recOnClickListenerInterface;
     private List <ListItem> listItemArray;
 
-    class DataHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView textViewTitle;
-        private TextView textViewItem;
-        private ImageButton imageButtonFavorite;
-
-        public DataHolder(@NonNull View itemView,RecOnClickListenerInterface recOnClickListenerInterface) {
-            super(itemView);
-            textViewTitle = itemView.findViewById(R.id.textItemTitle);
-            textViewItem = itemView.findViewById(R.id.textItemText);
-            imageButtonFavorite = itemView.findViewById(R.id.imageButtonFavorite);
-        }
-
-        void setData(ListItem listItem){
-
-        }
-
-        @Override
-        public void onClick(View v) {
-
-        }
-    }
-
     public DataAdapter(Context context, RecOnClickListenerInterface recOnClickListenerInterface, List<ListItem> listItemArray) {
         this.context = context;
         this.recOnClickListenerInterface = recOnClickListenerInterface;
         this.listItemArray = listItemArray;
     }
 
+    class DataHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private TextView textViewTitle;
+        private TextView textViewItem;
+        private ImageButton imageButtonFavorite;
+
+        public DataHolder(@NonNull View itemView) {
+            super(itemView);
+            textViewTitle = itemView.findViewById(R.id.textItemTitle);
+            textViewItem = itemView.findViewById(R.id.textItemText);
+            imageButtonFavorite = itemView.findViewById(R.id.imageButtonFavorite);
+            itemView.setOnClickListener(this);
+        }
+
+        void setData(ListItem listItem){
+            textViewTitle.setText(listItem.getText());
+            textViewItem.setText(listItem.getText());
+        }
+
+        @Override
+        public void onClick(View v) {
+            recOnClickListenerInterface.onItemClicked(getAdapterPosition());
+
+        }
+    }
+
     @NonNull
     @Override
     public DataHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout,parent,false);
-        return new DataHolder(view,recOnClickListenerInterface);
+        return new DataHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DataHolder holder, int position) {
-
+        holder.setData(listItemArray.get(position));
     }
 
     @Override

@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -19,12 +21,23 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import techmarket.uno.drawermenu4.adapter.DataAdapter;
+import techmarket.uno.drawermenu4.adapter.ListItem;
+import techmarket.uno.drawermenu4.adapter.RecOnClickListenerInterface;
+
 public class MainActivity extends AppCompatActivity{
     private ImageView imageMenu;
     private DrawerLayout drawerLayout;
     private TextView textTitle;
     private NavigationView navigationView;
     private NavItemSelectedListener onNavItemSelectedListener;
+    private RecOnClickListenerInterface recOnClickListenerInterface;
+    private DataAdapter dataAdapter;
+    private List<ListItem> listData;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +48,9 @@ public class MainActivity extends AppCompatActivity{
         imageMenu = findViewById(R.id.imageMenu);
         textTitle = findViewById(R.id.textTitle);
         navigationView = findViewById(R.id.navigationView);
+
+        setRecOnClickListener();
+        init();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -55,6 +71,38 @@ public class MainActivity extends AppCompatActivity{
               }
            }
         );
+    }
+    private void setRecOnClickListener(){
+        recOnClickListenerInterface = new RecOnClickListenerInterface() {
+            @Override
+            public void onItemClicked(int position) {
+                Toast.makeText(MainActivity.this, "Postion = " + position, Toast.LENGTH_SHORT).show();
+            }
+        };
+    }
+
+    private void init(){
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager( new LinearLayoutManager(this));
+        listData = new ArrayList<>();
+        ListItem item = new ListItem();
+        item.setText_title("Hello1");
+        item.setText("Text1");
+        listData.add(item);
+        listData.add(item);
+        listData.add(item);
+        listData.add(item);
+        listData.add(item);
+        listData.add(item);
+        listData.add(item);
+        listData.add(item);
+        listData.add(item);
+
+        dataAdapter = new DataAdapter(this,
+                recOnClickListenerInterface,
+                listData);
+        recyclerView.setAdapter(dataAdapter);
+
     }
 }
 
