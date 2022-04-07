@@ -48,18 +48,7 @@ public class MainActivity extends AppCompatActivity{
 
         setRecOnClickListener();
         init();
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
-                drawerLayout.closeDrawers();
-                item.setChecked(true);
-                textTitle.setText(item.getTitle());
-
-                return true;
-            }
-        });
+        menuListener();
 
         imageMenu.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -68,6 +57,48 @@ public class MainActivity extends AppCompatActivity{
               }
            }
         );
+    }
+
+    void menuListener(){
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.planets:
+                            updateMainList(getResources().getStringArray(R.array.planets),
+                                    getResources().getStringArray(R.array.keywords));
+                        Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.stars:
+                        updateMainList(getResources().getStringArray(R.array.stars),
+                                getResources().getStringArray(R.array.keywords_stars));
+                        Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.travel:
+
+                        break;
+                }
+                //Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                drawerLayout.closeDrawers();
+                //item.setChecked(true);
+                textTitle.setText(item.getTitle());
+
+                return true;
+            }
+        });
+    }
+
+    private void updateMainList(String[] array, String[] titleArray){
+        List<ListItem> list = new ArrayList<>();
+
+         for(int i = 0; i < array.length; i++){
+            ListItem item = new ListItem();
+            item.setText(array[i]);
+            item.setText_title(titleArray[i]);
+            item.setFavorite(false);
+            list.add(item);
+        }
+        dataAdapter.updateList(list);
     }
     private void setRecOnClickListener(){
         recOnClickListenerInterface = new RecOnClickListenerInterface() {
@@ -100,61 +131,9 @@ public class MainActivity extends AppCompatActivity{
             item.setFavorite(false);
             listData.add(item);
         }
-
-//        for(int i = 0; i < titleArray.length; i++){
-//            ListItem title = new ListItem();
-//            title.setText_title(titleArray[i]);
-//            listKeywords.add(title);
-//        }
-
         dataAdapter = new DataAdapter(this,
                 recOnClickListenerInterface,
                 listData);
         recyclerView.setAdapter(dataAdapter);
-
     }
 }
-
-//    Menu m = navigationView.getMenu();
-//        for(int i=0; i<m.size();i++) {
-//        MenuItem mi = m.getItem(i);
-//
-//        //for aapplying a font to subMenu ...
-//        SubMenu subMenu = mi.getSubMenu();
-//        if (subMenu!=null && subMenu.size() > 0 ) {
-//        for (int j=0; j <subMenu.size();j++) {
-//        MenuItem subMenuItem = subMenu.getItem(j);
-//        applyFontToMenuItem(subMenuItem);
-//        }
-//        }
-//        //the method we have create in activity
-//        applyFontToMenuItem(mi);
-//        }
-
-//    private void applyFontToMenuItem(MenuItem mi) {
-//        if (MainActivity.this != null) {
-//            Typeface font = Typeface.createFromAsset(MainActivity.this.getAssets(), getString(R.string.font3));
-//            SpannableString mNewTitle = new SpannableString(mi.getTitle());
-//            mNewTitle.setSpan(new CustomTypeFaceSpan("",  font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-//            mi.setTitle(mNewTitle);
-//        }
-//    }
-
-//textTitle.setOnClickListener(new View.OnClickListener() {
-//@Override
-//public void onClick(View v) {
-//        drawerLayout.openDrawer(GravityCompat.START);
-//        }
-//        });
-        //ListItem item = new ListItem();
-//        item.setText_title("Hello1");
-//                item.setText("Text1");
-//                listData.add(item);
-//                listData.add(item);
-//                listData.add(item);
-//                listData.add(item);
-//                listData.add(item);
-//                listData.add(item);
-//                listData.add(item);
-//                listData.add(item);
-//                listData.add(item);

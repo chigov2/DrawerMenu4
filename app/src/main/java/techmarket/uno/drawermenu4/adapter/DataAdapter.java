@@ -67,9 +67,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.DataHolder> {
     public int getItemCount() {
         return listItemArray.size();
     }
-    void updateList(List<ListItem> listArray){
+
+   public void updateList(List<ListItem> listArray){
         listItemArray.clear();
-        listArray.addAll(listArray);
+        listItemArray.addAll(listArray);
         notifyDataSetChanged();
     }
 }

@@ -20,10 +20,17 @@
         <item>In id lectus ut arcu ullamcorper finibus. Quisque nec augue at nisl auctor congue eget eget nunc. Etiam sit amet justo in arcu auctor placerat. Proin luctus, risus sed faucibus tincidunt, nisl est tincidunt diam, et fermentum urna tortor vel augue. Nam placerat ultricies tortor eu facilisis. Mauris ac libero pharetra, euismod sapien in, consectetur erat. Vivamus venenatis augue vel velit tincidunt, a maximus nibh sodales. Sed dapibus non orci at condimentum. Ut feugiat, est eget blandit pulvinar, arcu lectus scelerisque augue, a elementum ipsum enim sit amet ligula. Maecenas vulputate tempus lacus vel fringilla. In hac habitasse platea dictumst. Nam porta sapien in lobortis iaculis. </item>
     </string-array>
     <string-array name="keywords">
-        <item>1</item>
+        <item>7</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
         <item>5</item>
+    </string-array>
+    <string-array name="keywords_stars">
+        <item>11</item>
+        <item>22</item>
+        <item>33</item>
+        <item>44</item>
+        <item>55</item>
     </string-array>
 </resources>
